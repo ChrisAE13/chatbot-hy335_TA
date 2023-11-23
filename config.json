@@ -1,0 +1,8 @@
+{
+    "llm": {
+        "temperature": 0.3,
+        "model": "gpt-3.5-turbo-1106"
+    },
+    "data": "data",
+    "storage": "storage"
+}
