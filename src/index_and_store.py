@@ -34,3 +34,4 @@ index = VectorStoreIndex.from_documents(documents, service_context=service_conte
 index.storage_context.persist(persist_dir=config.STORAGE_DIR) 
 print("Created storage directory:", config.STORAGE_DIR)
 
+# test
