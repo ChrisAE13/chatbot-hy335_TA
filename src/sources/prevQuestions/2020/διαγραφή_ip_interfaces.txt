@@ -1,0 +1,5 @@
+Έχω προσθέσει μια παραπάνω ip sto interface ATH-L2.10. πώς θα μπορούσα να την διαγράψω;router# conf t
+
+router(config)# interface interface name
+router(config-if)# no ip address 1.0.0.1/24
+router(config-if)# ip address 2.0.0.1/24

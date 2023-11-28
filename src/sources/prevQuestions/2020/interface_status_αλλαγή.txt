@@ -1,0 +1,3 @@
+Αν γινεται αλλαγη interface status σε up ή down, ποιο ειναι το command;
+
+Μπαίνεις στο configuration terminal του router και επιλέγεις το interface που θέλεις να ενεργοποιήσεις ή να απενεργοποιήσεις. Αφού έχεις επιλέξει το κατάλληλο interface γράφεις "shutdown" για απενεργοποίηση ή "no shutdown" για ενεργοποίηση του interface.
