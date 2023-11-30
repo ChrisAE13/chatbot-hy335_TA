@@ -1,6 +1,5 @@
 import os
 import config
-# from pathlib import Path
 from llama_index.llms import OpenAI
 from llama_index import (
 	SimpleDirectoryReader, 
@@ -21,6 +20,7 @@ if(os.path.exists(config.STORAGE_DIR)):
 	for file in os.listdir(config.STORAGE_DIR):
 		os.remove(config.STORAGE_DIR+'/'+file)
 		print(file, "deleted")
+
 
 # TODO: maybe find a more efficient way of reading and storing info
 # perhaps diff loaders for diff file types --> see llama_hub
