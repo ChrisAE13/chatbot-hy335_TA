@@ -20,7 +20,7 @@ index = load_index_from_storage(storage_context)
 
 # set llm model and query engine
 llm = OpenAI(temperature=config.TEMPERATURE, model=config.MODEL)
-service_context = ServiceContext.from_defaults(llm=llm)
+service_context = ServiceContext.from_defaults(llm=llm, system_prompt="You are a teaching assistant for the course cs335b - Computer Networks")
 query_engine = index.as_query_engine(service_context=service_context)
 
 # chatbot loop
