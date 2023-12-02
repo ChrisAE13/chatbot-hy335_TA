@@ -1,0 +1,47 @@
+NAME       
+
+       ip - show / manipulate routing, network devices, interfaces and
+       tunnels
+
+SYNOPSIS     
+
+       ip [ OPTIONS ] OBJECT { COMMAND | help }
+
+       ip [ -force ] -batch filename
+
+       OBJECT := { link | address | addrlabel | route | rule | neigh |
+               ntable | tunnel | tuntap | maddress | mroute | mrule |
+               monitor | xfrm | netns | l2tp | tcp_metrics | token |
+               macsec | vrf | mptcp | ioam | stats }
+
+       OPTIONS := { -V[ersion] | -h[uman-readable] | -s[tatistics] |
+               -d[etails] | -r[esolve] | -iec | -f[amily] { inet | inet6
+               | link } | -4 | -6 | -B | -0 | -l[oops] { maximum-addr-
+               flush-attempts } | -o[neline] | -rc[vbuf] [size] |
+               -t[imestamp] | -ts[hort] | -n[etns] name | -N[umeric] |
+               -a[ll] | -c[olor] | -br[ief] | -j[son] | -p[retty] }
+
+
+Ip command in Linux is present in the net-tools which are used for performing 
+several network administration tasks. IP stands for Internet Protocol. This command 
+is used to show or manipulate routing, devices, and tunnels. It is similar to the 
+ifconfig command, but it is much more powerful with more functions and facilities attached to it. 
+ifconfig is one of the deprecated commands in the net-tools of Linux that has not been 
+maintained for many years. The ip command is used to perform several tasks like 
+assigning an address to a network interface or configuring network interface parameters. 
+It can perform several other tasks like configuring and modifying the default and static 
+routing, setting up a tunnel over IP, listing IP addresses and property information, 
+modifying the status of the interface, and assigning, deleting, and setting up IP 
+addresses and routes. 
+
+add: 
+
+This is used to assign an IP address to an interface.
+
+ip a add (ip_address) dev (interface)
+
+del:
+
+ This is used to delete an assigned IP address to an interface.
+
+ip a del (ip_address) dev (interface)
