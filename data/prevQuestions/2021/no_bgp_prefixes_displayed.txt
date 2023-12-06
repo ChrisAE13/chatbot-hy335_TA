@@ -1,0 +1,4 @@
+ενώ έχουμε κάνει τα configurations στο ερώτημα 2.2, το show ip bgp μας βγάζει no bgp prefixes displayed, 0 exist. Τι σημαίνει αυτό;
+
+Το output που αναφέρεις, σημαίνει ότι ο συγκεκριμένος router δεν έχει μάθει κανένα prefix μέσω bgp (iBGP και eBGP).
+Αν έχεις κάνει announce το δικό σου prefix X.0.0.0/8 στο BGP και έχεις υλοποιήσει σωστά το ερώτημα 2.1, θα πρέπει στο output του show ip bgp command να βλέπεις, τουλάχιστον, το δικό σου prefix X.0.0.0/8 .

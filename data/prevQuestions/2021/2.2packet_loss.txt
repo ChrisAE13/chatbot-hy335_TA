@@ -1,0 +1,6 @@
+Ενω εκανα configure ta neighbor ip apo to as_connections μετα με την εντολη show ip bgp summary βλεπω το ip αλλα λεει active σε μερικα ενω σε αλλα εχει μαθει prefix ,  εχει να κανει με τον γειτονα η ειναι δικο μου λαθος?
+Επισης ενω εχω κανει ολα τα βηματα μεχρι και prefix announce kai static route  σε ολους τους router μετα το traceroute εχει παλι packet loss.
+
+σχετικά με το output της εντολής show ip bgp summary επειδή στο AS σας έχετε 8 συνολικά routers, θα πρέπει σε εκτέλεση της εντολής να βλέπετε 7 internal loopback IPs (όλων των routers του AS σας εκτός του router που tρέχεις την εντολή) και μια εξωτερική προς κάποιο γειτονικό AS σας. Σε ποια από όλες εμφανίζεται το active? Αν είναι σε internal σημαίνει πως το πρόβλημα εντοπίζεται στο iBGP configuration ενώ σε αντίθετη περίπτωση το πρόβλημα σχετίζεται είτε με το configuration που συνδέει το AS σας με το το γειτονικό AS είτε έχει θέμα το configuration του γειτονικού AS. Οπότε δοκίμασε με το σύνολο των γειτονικών ASes για να δεις που είναι το πρόβλημα.
+Επίσης, για την εντολή next hop self και prefix announcement που αναφέρεις σε κάποιο mail σου, πρέπει να γίνει σε όλους τους routers είτε για να συνδεθείς με άλλο AS είτε με IXP. Αν δεν θυμάσαι σε ποιούς routers έχεις κάνει configuration, νέο configuration κάνει overwrite το παλιό. 
+Τέλος traceroute θα εκτελείτε μόνο από hosts και όχι από routers.
