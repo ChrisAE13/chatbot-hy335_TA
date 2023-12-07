@@ -1,6 +1,7 @@
 import os
 import gradio as gr
 import config
+import time
 from llama_index import(
     StorageContext,
     ServiceContext,
@@ -21,18 +22,18 @@ def user(user_message, history) -> tuple:
     return "", history + [[user_message, None]]
 
 def generate_response(history):
-    print(history)
+    # print(history)
     streaming_response = query_engine.query(history[-1][0])
     history[-1][1] = ""
-    print("HERE")
     for text in streaming_response.response_gen:
-        # for character in text:
-        history[-1][1] += text
-        yield history
+        for character in text:
+            history[-1][1] += character
+            # time.sleep(0.05)
+            yield history
 
-def response(message, history):
-    streaming_response = query_engine.query(message)
-    return str(streaming_response.print_response_stream())
+# def response(message, history):
+#     streaming_response = query_engine.query(message)
+#     return str(streaming_response.print_response_stream())
 
 # load index from storage
 storage_context = StorageContext.from_defaults(persist_dir=config.STORAGE_DIR)
@@ -88,11 +89,15 @@ query_engine = index.as_query_engine(service_context=service_context, streaming=
 
 
 with gr.Blocks() as demo:
-    chatbot = gr.components.Chatbot(label='Openai Chatbot', height=600)
-    msg = gr.components.Textbox(label='User query')
-    clear = gr.components.ClearButton()
+    chatbot = gr.components.Chatbot(label='HY335 Assistant', height=600)
+    msg     = gr.components.Textbox(label='')
+    submit  = gr.components.Button(value='Submit')
+    clear   = gr.components.ClearButton()
 
     msg.submit(user, [msg, chatbot], [msg, chatbot], queue=False).then(
+        generate_response, chatbot, chatbot
+    )
+    submit.click(user, [msg, chatbot], [msg, chatbot], queue=False).then(
         generate_response, chatbot, chatbot
     )
     clear.click(lambda: None, None, chatbot, queue=False)
