@@ -26,7 +26,7 @@ chat_text_qa_msgs = [
     ChatMessage(
         role=MessageRole.SYSTEM,
         content=(
-            "If the context isn't helpful, do not answer the question." # CHECK in order to make it more absolute
+            "If the context isn't helpful, do not answer the question."
             # "Always answer the question, even if the context isn't helpful."
         ),
     ),
