@@ -1,0 +1,7 @@
+Καλησπέρα σε κάποια ρουτερ υπάρχουν interfaces της μορφής ext_ και άλλο ένα ixp_122 τα οποία δεν έχουν διεύθυνση.Τα πειράζουμε αυτά; Eπίσης στα ospf θα βάλουμε και τα ssh που υπάρχουν; 
+
+η πρώτη φάση του project αφορά την intra-domain επικοινωνία (δηλαδή την επικοινωνία εσωτερικά του AS κάθε ομάδας), τα interface της μορφής ext_something και ixp_something χρησιμεύουν για την επικοινωνία μεταξύ των AS, δηλαδή την inter-domain επικοινωνία που θα μελετήσουμε στην δεύτερη φάση του project. Επομένως δεν χρειάζεται, σε αυτή την φάση, να αναθέσετε διευθύνσεις σε αυτά τα interface (ext_something και ixp_something) ούτε να τα συμπεριλάβετε στο OSPF configuration. Επίσης δεν χρειάζεστε να συμπεριλάβετε τα ssh interface στο OSPF configuration.
+
+Το matrix interface στο router PARI το βάζουμε στο OSPF confiquration?
+
+δεν χρειάζεται να βάλετε το συγκεκριμένο interface στο OSPF configuration.

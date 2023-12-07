@@ -1,0 +1,11 @@
+n the context of BGP, policies are rules or configurations that network administrators use to control the selection and announcement of routes. BGP policies help determine which routes are accepted, preferred, or rejected. Here are some common BGP policy components:
+
+    Prefix Lists: These specify which IP prefixes are allowed or denied. They help filter the routes that BGP advertises or accepts.
+
+    Route Maps: Route maps allow you to modify attributes of BGP routes or filter them based on various criteria. For example, you might use a route map to set the next hop for certain routes or to apply a specific policy to incoming or outgoing routes.
+
+    AS Path Filtering: BGP routers exchange information about the autonomous systems (AS) through which a route has passed. AS path filtering allows network administrators to control the selection of routes based on the AS path.
+
+    Community Values: BGP communities are tags that can be attached to routes. Network operators use community values to implement policies, such as controlling route propagation or influencing route selection.
+
+    Local Preference: BGP routers within an autonomous system (AS) use local preference to determine the preferred exit point for traffic leaving the AS.

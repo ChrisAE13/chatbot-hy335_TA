@@ -1,0 +1,7 @@
+traceroute command in Linux prints the route that a packet takes to reach the host. This command is useful when you want to know about the route and about all the hops that a packet takes.
+
+The first column corresponds to the hop count. The second column represents the address of that hop and after that, you see three space-separated time in milliseconds. traceroute command sends three packets to the hop and each of the time refers to the time taken by the packet to reach the hop.
+
+Syntax:
+
+traceroute [options]  host_Address [pathlength]

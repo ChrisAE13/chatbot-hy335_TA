@@ -1,0 +1,7 @@
+σχετικά με καταλάθος διαγραφή port  από κάποιο switch (πχ student_1 από το WEST switch):
+
+Η απάντηση είναι η εντολή 
+
+ovs-vsctl add-port br0 1-student_1
+
+στο switch. Στη συνέχεια χρησιμοποιείτε την εντολή set, όπως παρουσιάζεται κανονικά στο configuration tutorial στην σελίδα 2.

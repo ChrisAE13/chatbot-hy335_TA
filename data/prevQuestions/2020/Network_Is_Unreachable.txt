@@ -1,0 +1,3 @@
+Εχω σεταρει ολα τα IPs σε Host και Routers . Οι hosts και routers των HOUS και NEWY μιλάνε με όλους τους αλλους hosts και routers αλλα μεταξύ τους μου πετάει network is unreachable . Τι μπορεί να φταίει?
+
+εφόσον ο Host στο NEWY (ή HOUS) μπορεί να επικοινωνεί με οποιωνδήποτε άλλο host στο AS εκτός από αυτόν στο HOUS (ή NEWY), τότε μάλλον δεν έχεις κάνει σωστά το configuration (που αφορά την μεταξύ τους επικοινωνία) στους routers HOUS και NEWY.

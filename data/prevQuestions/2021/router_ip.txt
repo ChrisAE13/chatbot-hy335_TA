@@ -1,0 +1,11 @@
+θα ήθελα να ρωτησω ποιες είναι οι ip των routers. Ποιος είναι ο τρόπος για να τις βρουμε?
+
+σχετικά με τις IPs των routers που θα χρησιποιήσετε στον ορισμό των default gateways, θα πρέπει να λάβετε υπόψιν 2 βασικούς περιορισμούς:
+
+1) Οι IPs να βρίσκονται εντός subnet (και διαφορετικές από τις IPs των hosts)
+
+2) H άσκηση επιπλέον επισημαίνει ότι
+
+"all hosts connected to CERN and EPFL use GENE as standard gateway and the hosts at ETHZ use ZURI"
+
+οπότε με βάση τον παραπάνω περιορισμό θα επιλέξετε και ta default gateways σε κάθε host.
