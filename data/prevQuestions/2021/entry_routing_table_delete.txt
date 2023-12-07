@@ -1,0 +1,5 @@
+Θελουμε να διαγραψουμε την συγκεκριμενη υπογραμμισμενη γραμμη του routing table του student_2 που εικαζουμε οτι μας δημιουργει προβληματα. Με ποια εντολη θα το πετυχουμε αυτο?
+Εννοειται πως εχουμε δοκιμασει τις εντολες του φροντιστηριου αποτυχημενα (route del default gw IP ADDRESS INTERFACE NAME).
+
+δοκίμασε το full syntax της εντολής 
+route del -net (Destination IP) gw (Gateway IP) netmask (Genmask IP) dev (Interface)

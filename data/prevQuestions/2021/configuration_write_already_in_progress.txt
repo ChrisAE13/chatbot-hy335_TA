@@ -1,0 +1,3 @@
+Από χθές το BOST router εμφανίζει [ "% Configuration write already in progress." ] κάθε φορά που προσπαθούμε να κάνουμε write. Είναι φυσιολογικό ή χρειάζεται restart?
+
+σχετικά με το μήνυμα [ "% Configuration write already in progress." ] και γενικότερα για να δείτε τι έχει γραφτεί σε κάθε router μπορείτε να κατεβάσετε frr.conf από έναν router στο pc σας (αναφέρετε στα αρχικά φροντιστήρια ο τρόπος, όχι το save_configs) και να επαληθεύσετε αν είναι σωστό.
