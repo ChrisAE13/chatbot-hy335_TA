@@ -1,5 +1,7 @@
 import os
+import gradio as gr
 import config
+import time
 from llama_index import(
     StorageContext,
     ServiceContext,
@@ -15,6 +17,19 @@ os.environ["OPENAI_API_KEY"] = os.environ.get("OPENAI_API_KEY")
 
 def promt(): 
     print('\n>> ', end='') 
+
+def user(user_message, history) -> tuple:
+    return "", history + [[user_message, None]]
+
+def generate_response(history):
+    streaming_response = query_engine.query(history[-1][0])
+    history[-1][1] = ""
+    # print char by char
+    for text in streaming_response.response_gen:
+        for character in text:
+            history[-1][1] += character
+            # time.sleep(0.05)
+            yield history
 
 # load index from storage
 storage_context = StorageContext.from_defaults(persist_dir=config.STORAGE_DIR)
@@ -44,23 +59,25 @@ chat_text_qa_msgs = [
 ]
 text_qa_template = ChatPromptTemplate(chat_text_qa_msgs)
 
-
 # set llm model and query engine
 llm = OpenAI(temperature=config.TEMPERATURE, model=config.MODEL)
 service_context = ServiceContext.from_defaults(llm=llm, system_prompt="You are a teaching assistant for the course cs335b - Computer Networks")
 query_engine = index.as_query_engine(service_context=service_context, streaming=True, text_qa_template=text_qa_template)
 
-# chatbot loop
-print('\nHello! Ask me about HY335! (Press q, quit or exit to exit.)')
-promt()
 
-query = input()
+with gr.Blocks() as demo:
+    chatbot = gr.components.Chatbot(label='HY335 Assistant', height=600)
+    msg     = gr.components.Textbox(label='')
+    submit  = gr.components.Button(value='Submit')
+    clear   = gr.components.ClearButton()
 
-while (query!= 'q') and (query != 'quit') and (query !='exit'):
-    streaming_response = query_engine.query(query)
-    streaming_response.print_response_stream()
-    print('\n')
-    promt()
-    query = input()
+    msg.submit(user, [msg, chatbot], [msg, chatbot], queue=False).then(
+        generate_response, chatbot, chatbot
+    )
+    submit.click(user, [msg, chatbot], [msg, chatbot], queue=False).then(
+        generate_response, chatbot, chatbot
+    )
+    clear.click(lambda: None, None, chatbot, queue=False)
 
-print('\nBye!')
+demo.queue()
+demo.launch()
