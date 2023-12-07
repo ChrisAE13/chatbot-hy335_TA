@@ -1,4 +1,5 @@
 import os
+import gradio as gr
 import config
 from llama_index import(
     StorageContext,
@@ -15,6 +16,23 @@ os.environ["OPENAI_API_KEY"] = os.environ.get("OPENAI_API_KEY")
 
 def promt(): 
     print('\n>> ', end='') 
+
+def user(user_message, history) -> tuple:
+    return "", history + [[user_message, None]]
+
+def generate_response(history):
+    print(history)
+    streaming_response = query_engine.query(history[-1][0])
+    history[-1][1] = ""
+    print("HERE")
+    for text in streaming_response.response_gen:
+        # for character in text:
+        history[-1][1] += text
+        yield history
+
+def response(message, history):
+    streaming_response = query_engine.query(message)
+    return str(streaming_response.print_response_stream())
 
 # load index from storage
 storage_context = StorageContext.from_defaults(persist_dir=config.STORAGE_DIR)
@@ -51,16 +69,33 @@ service_context = ServiceContext.from_defaults(llm=llm, system_prompt="You are a
 query_engine = index.as_query_engine(service_context=service_context, streaming=True, text_qa_template=text_qa_template)
 
 # chatbot loop
-print('\nHello! Ask me about HY335! (Press q, quit or exit to exit.)')
-promt()
+# print('\nHello! Ask me about HY335! (Press q, quit or exit to exit.)')
+# promt()
 
-query = input()
+# query = input()
 
-while (query!= 'q') and (query != 'quit') and (query !='exit'):
-    streaming_response = query_engine.query(query)
-    streaming_response.print_response_stream()
-    print('\n')
-    promt()
-    query = input()
+# while (query!= 'q') and (query != 'quit') and (query !='exit'):
+#     streaming_response = query_engine.query(query)
+#     for text in streaming_response.response_gen:
+#         print(text)
 
-print('\nBye!')
+#     # streaming_response.print_response_stream()
+#     print('\n')
+#     promt()
+#     query = input()
+
+# print('\nBye!')
+
+
+with gr.Blocks() as demo:
+    chatbot = gr.components.Chatbot(label='Openai Chatbot', height=600)
+    msg = gr.components.Textbox(label='User query')
+    clear = gr.components.ClearButton()
+
+    msg.submit(user, [msg, chatbot], [msg, chatbot], queue=False).then(
+        generate_response, chatbot, chatbot
+    )
+    clear.click(lambda: None, None, chatbot, queue=False)
+
+demo.queue()
+demo.launch()
