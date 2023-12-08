@@ -66,7 +66,7 @@ query_engine = index.as_query_engine(service_context=service_context, streaming=
 
 
 with gr.Blocks() as demo:
-    chatbot = gr.components.Chatbot(label='HY335 Assistant', height=600)
+    chatbot = gr.components.Chatbot(label='ChatBGP', height=500)
     msg     = gr.components.Textbox(label='')
     submit  = gr.components.Button(value='Submit')
     clear   = gr.components.ClearButton()
